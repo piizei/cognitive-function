@@ -8,3 +8,28 @@ The result is filtered by RegExp provided in env variable ```RegExpMatcher```
 The filtered result is loaded in CosmosDB database provided in env variable ```Database``` and Collection ```Collection```
 
 The cognitive services instance is configured to env variables ```CsUrl``` and  ```CsAccessKey```
+
+
+## Running locally
+
+Just create a local.settings.json with following:
+
+
+```
+{
+    "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "Storage_Landing": "CONNECTION STRING TO MY STORAGE ACCOUNT",
+    "CsUrl": "https:/MY-COGNITIVE-SERVICES-INSTANCE.cognitiveservices.azure.com/",
+    "CsAccessKey": "MY-COGNITIVE-SERVICES-INSTANCE-ACCESSS-KEY",
+    "RegExpMatcher": "SOMETHING|^y$",
+    "Container": "blob-container-name",
+    "Database": "cosmos-database-name",
+    "Collection": "cosmos-database-collection-name",
+    "CosmosDBConnection": "CONNECTION STRING TO MY COSMOSDB"
+  }
+}
+
+```
