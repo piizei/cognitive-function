@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
@@ -43,19 +42,26 @@ namespace CSIntegration
         {
             log.LogInformation($"Blob trigger function Processed blob\n Name:{name} \n Size: {myBlob.Length} Bytes");
 
-            var request = new HttpRequestMessage(HttpMethod.Post, csUrl);
-
-
-            var operationHeaders = await client.ReadInStreamAsync(myBlob);
+            ReadInStreamHeaders operationHeaders;
+            try
+            {
+                operationHeaders = await client.ReadInStreamAsync(myBlob);
+            }
+            catch (Exception ex)
+            {
+                log.LogInformation($"Failed to connect to Cognitive Services {ex.Message}");
+                return;
+            }
 
             ReadOperationResult results;
             do
             {
                 results = await client.GetReadResultAsync(operationHeaders.GetGuid());
+
             }
             while ((results.Status == OperationStatusCodes.Running ||
-               results.Status == OperationStatusCodes.NotStarted));
-
+                results.Status == OperationStatusCodes.NotStarted));
+            
 
             var texts = results.AnalyzeResult.ReadResults.SelectMany(r => r.Lines).Select(l => l.Text).ToList();
             if (regex != null)
