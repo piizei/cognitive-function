@@ -25,7 +25,9 @@ Just create a local.settings.json with following:
     "CsUrl": "https:/MY-COGNITIVE-SERVICES-INSTANCE.cognitiveservices.azure.com/",
     "CsAccessKey": "MY-COGNITIVE-SERVICES-INSTANCE-ACCESSS-KEY",
     "RegExpMatcher": "SOMETHING|^y$",
-    "Container": "blob-container-name",
+    "Container": "blob-container-name-for-OCR",
+    "ContainerFR": "blob-container-name-for-form-recognizer",
+    "ModelId": "ID of the trained model of form-recognizer from the form-recognizer studio",
     "Database": "cosmos-database-name",
     "Collection": "cosmos-database-collection-name",
     "CosmosDBConnection": "CONNECTION STRING TO MY COSMOSDB"

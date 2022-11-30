@@ -13,7 +13,6 @@ namespace CSIntegration
 {
     public class OcrFunction
     {
-        private readonly string csUrl = Environment.GetEnvironmentVariable("CsUrl", EnvironmentVariableTarget.Process);
         private readonly string databaseId = Environment.GetEnvironmentVariable("Database", EnvironmentVariableTarget.Process);
         private readonly string collectionId = Environment.GetEnvironmentVariable("Collection", EnvironmentVariableTarget.Process);
 
