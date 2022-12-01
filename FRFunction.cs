@@ -13,10 +13,8 @@ namespace CSIntegration
 {
     public class FRFunction
     {
-
-        private readonly string csUrl = Environment.GetEnvironmentVariable("CsUrl", EnvironmentVariableTarget.Process);
-        private readonly string databaseId = Environment.GetEnvironmentVariable("Database", EnvironmentVariableTarget.Process);
-        private readonly string collectionId = Environment.GetEnvironmentVariable("Collection", EnvironmentVariableTarget.Process);
+        private readonly string databaseId = Environment.GetEnvironmentVariable("DatabaseFr", EnvironmentVariableTarget.Process);
+        private readonly string collectionId = Environment.GetEnvironmentVariable("CollectionFr", EnvironmentVariableTarget.Process);
         DocumentAnalysisClient client = new DocumentAnalysisClient(new Uri(Environment.GetEnvironmentVariable("CsUrl", EnvironmentVariableTarget.Process)),
             new Azure.AzureKeyCredential(Environment.GetEnvironmentVariable("CsAccessKey", EnvironmentVariableTarget.Process)));
         private readonly string modelId = Environment.GetEnvironmentVariable("ModelId", EnvironmentVariableTarget.Process);
