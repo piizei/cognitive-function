@@ -30,8 +30,8 @@ Just create a local.settings.json with following:
     "ModelId": "ID of the trained model of form-recognizer from the form-recognizer studio",
     "Database": "cosmos-database-name for ocr results",
     "Collection": "cosmos-database-collection-name for ocr results",
-    "DatabaseFr": "cosmos-database-name for form-recognizer results,
-    "CollectionFr": "cosmos-database-collection-name for form-recognizer results",
+    "DatabaseFR": "cosmos-database-name for form-recognizer results,
+    "CollectionFR": "cosmos-database-collection-name for form-recognizer results",
     "CosmosDBConnection": "CONNECTION STRING TO MY COSMOSDB"
   }
 }
