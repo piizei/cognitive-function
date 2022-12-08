@@ -6,7 +6,7 @@ using Azure.AI.FormRecognizer.DocumentAnalysis;
 using Azure;
 using System.Text.Json;
 using System.Collections.Generic;
-
+using System.Linq;
 
 namespace CSIntegration
 {
@@ -49,8 +49,10 @@ namespace CSIntegration
                     log.LogInformation($"  Found key-value pair: '{kvp.Key}' and '{kvp.Value.Content}' with confidence {kvp.Value.Confidence}");
                 }
             }
-            //Write to CosmosDb
-            document = new { confidence  = result.Confidence, fields = result.Fields, id = Guid.NewGuid() };            
+            // Write to CosmosDb
+            // Manipulate the keys a bit to make it more queryable
+            var statistics = result.Fields.Select(field => new Statistic { field = field.Key, confidence = field.Value.Confidence.Value });
+            document = new { statistics = statistics, confidence  = result.Confidence, fields = result.Fields, id = Guid.NewGuid() };            
 
         }
 
@@ -60,6 +62,12 @@ namespace CSIntegration
     {
         public string id { get; set; }
         public float confidence { get; set; }
-        KeyValuePair<string, DocumentField> fields { get; set; }
+        public Statistic statistics { get; set; }
+    }
+
+    public class Statistic
+    {
+        public string field { get; set; }
+        public float confidence { get; set; }
     }
 }
