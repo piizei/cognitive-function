@@ -19,7 +19,7 @@ namespace CSIntegration
 
         // Triggers on PDF only
         [FunctionName("FormRecognizer")]
-        public void Run([BlobTrigger("%ContainerFR%/{name}.pdf", Connection = "Storage_Landing")] Stream inputBlob, string name,
+        public void Run([BlobTrigger("%ContainerFR%/{name}%FRFilter%", Connection = "Storage_Landing")] Stream inputBlob, string name,
             [CosmosDB(
                 databaseName: "%DatabaseFR%",
                 collectionName: "%CollectionFR%",

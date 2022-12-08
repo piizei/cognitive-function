@@ -10,6 +10,13 @@ The filtered result is loaded in CosmosDB database provided in env variable ```D
 The cognitive services instance is configured to env variables ```CsUrl``` and  ```CsAccessKey```
 
 
+There is PDF splitting Function in action as well configured with the input container ```PdfSplitter``` and output container ``PdfSplitteOutput```. These can be same as well.
+
+The plitter can share container with form-recognizer. A filtering variable was added to support that: ```FRFilter```. Even if the container are not shared, the filter should be at least '.pdf'.
+
+Container names can include directory names
+
+
 ## Running locally
 
 Just create a local.settings.json with following:
@@ -27,6 +34,9 @@ Just create a local.settings.json with following:
     "RegExpMatcher": "SOMETHING|^y$",
     "Container": "blob-container-name-for-OCR",
     "ContainerFR": "blob-container-name-for-form-recognizer",
+    "FRFilter": "File-ending filter for form-recognizer function (for example .pdf or page1.pdf)",
+    "PdfSplitter": "blob-container-name-for-input-of-splitting-pdf",
+    "PdfSplitteOutput": "blob-container-name-for-output-of-splitting-pdf (can be same as input)",
     "ModelId": "ID of the trained model of form-recognizer from the form-recognizer studio",
     "Database": "cosmos-database-name for ocr results",
     "Collection": "cosmos-database-collection-name for ocr results",
